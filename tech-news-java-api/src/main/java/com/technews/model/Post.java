@@ -1,8 +1,9 @@
-package main.java.model;
+package main.java.com.technews.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
+import java.util.Date;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Objects;
 @Table(name = "post")
 public class Post implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.Auto)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
     private String postUrl;
@@ -30,7 +31,7 @@ public class Post implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "updated_at")
     private Date updatedAt = new Date();
-    @OneToMany(mappedBy = "postId", Cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     public Post() {}
